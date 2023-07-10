@@ -4,7 +4,7 @@ import "./App.css";
 import { BrowserRouter } from "react-router-dom";
 
 import Header from "./components/Header";
-import Home from "./pages/Home";
+import AppRoute from "./route/AppRoute";
 
 const App: React.FC = () => {
   return (
@@ -12,7 +12,7 @@ const App: React.FC = () => {
       <div className="App">
         <BrowserRouter>
           <Header />
-          <Home/>
+          <AppRoute />
         </BrowserRouter>
       </div>
     </>

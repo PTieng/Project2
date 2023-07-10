@@ -12,17 +12,17 @@ const Header = () => {
             <nav className="navbar">
               <ul className="list-unstyled d-flex">
                 <li className="nav-item active">
-                  <Link to="" className="text-decoration-none">
+                  <Link to="/" className="text-decoration-none">
                     Trang chủ
                   </Link>
                 </li>
-                <li className="nav-item">
-                  <Link to="" className="text-decoration-none">
+                <li className="nav-item ">
+                  <Link to="/event" className="text-decoration-none">
                     Sự kiện
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="" className="text-decoration-none">
+                  <Link to="/contact" className="text-decoration-none">
                     Liên hệ
                   </Link>
                 </li>
