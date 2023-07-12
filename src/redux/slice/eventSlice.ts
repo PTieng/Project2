@@ -5,8 +5,13 @@ export interface Event {
     id: string;
     name: string;
     description: string;
+    description2: string;
+    description3: string;
+    description4: string;
     date: string | null;
     img: string;
+    img2: string;
+    img3: string;
     price: number;
 }
 

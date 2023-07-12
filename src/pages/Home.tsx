@@ -2,6 +2,20 @@ import { CalendarOutlined } from "@ant-design/icons";
 import { DatePicker, Button } from "antd";
 import dayjs from "dayjs";
 import React, { useRef, useState } from "react";
+import ballon1 from "../image/img_ballon1.png";
+import ballon2 from "../image/img_ballon2.png";
+import img3 from "../image/img3.png";
+import ballon3 from "../image/img_ballon3.png";
+import img2 from "../image/image 2.png";
+import background from "../image/bg.png";
+import ballon4 from "../image/ballon4.png";
+import ballon5 from "../image/ballon5.png";
+import ballon6 from "../image/ballon6.png";
+import img6 from "../image/img6.png";
+import vector from "../image/Vector.png";
+import input1 from "../image/icon-input1.png";
+import arrowIcon from "../image/arrowIcon.png";
+import start from "../image/star.png";
 const Home = () => {
   const [date, setDate] = useState("");
 
@@ -12,18 +26,18 @@ const Home = () => {
     <div>
       <div className="content">
         <div className="main-home">
-          <img src="bg.png" alt="" className="img-bg" />
+          <img src={background} alt="" className="img-bg" />
           <div className="title">
-            <img src="image 2.png" alt="" className="img2" />
+            <img src={img2} alt="" className="img2" />
             <p className="text-title-top">ĐẦM SEN</p>
             <p className="text-title-bot">PARK</p>
-            <img src="img_ballon1.png" alt="" className="img3" />
-            <img src="img_ballon2.png" alt="" className="img4" />
-            <img src="img3.png" alt="" className="img5" />
-            <img src="img_ballon3.png" alt="" className="img7" />
-            <img src="ballon4.png" alt="" className="img-ballon4" />
-            <img src="ballon5.png" alt="" className="img-ballon5" />
-            <img src="ballon6.png" alt="" className="img-ballon6" />
+            <img src={ballon1} alt="" className="img3" />
+            <img src={ballon2} alt="" className="img4" />
+            <img src={img3} alt="" className="img5" />
+            <img src={ballon3} alt="" className="img7" />
+            <img src={ballon4} alt="" className="img-ballon4" />
+            <img src={ballon5} alt="" className="img-ballon5" />
+            <img src={ballon6} alt="" className="img-ballon6" />
           </div>
 
           <div className="content-main">
@@ -45,25 +59,25 @@ const Home = () => {
                       </p>
                     </div>
                     <div className="text-box">
-                      <img src="star.png" alt="" className="star-img" />
+                      <img src={start} alt="" className="star-img" />
                       <p className="text">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                       </p>
                     </div>
                     <div className="text-box">
-                      <img src="star.png" alt="" className="star-img2" />
+                      <img src={start} alt="" className="star-img2" />
                       <p className="text2">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                       </p>
                     </div>
                     <div className="text-box">
-                      <img src="star.png" alt="" className="star-img3" />
+                      <img src={start} alt="" className="star-img3" />
                       <p className="text3">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                       </p>
                     </div>
                     <div className="text-box">
-                      <img src="star.png" alt="" className="star-img4" />
+                      <img src={start} alt="" className="star-img4" />
                       <p className="text4">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                       </p>
@@ -73,11 +87,11 @@ const Home = () => {
               </div>
             </div>
             <div className="img-6">
-              <img src="img6.png" alt="" className="img6" />
+              <img src={img6} alt="" className="img6" />
             </div>
 
             <div className="midle-col">
-              <img src="Vector.png" alt="" className="img-vector" />
+              <img src={vector} alt="" className="img-vector" />
             </div>
 
             <div className="right-box1">
@@ -87,8 +101,8 @@ const Home = () => {
                     <form action="">
                       <div className="form-input1">
                         <input type="text" className="input-rightbox-1" />
-                        <img src="icon-input1.png" alt="" className="icon1" />
-                        <img src="arrowIcon.png" alt="" className="icon1-2" />
+                        <img src={input1} alt="" className="icon1" />
+                        <img src={arrowIcon} alt="" className="icon1-2" />
                       </div>
 
                       <div className="form-input2">

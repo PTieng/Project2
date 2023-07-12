@@ -2,6 +2,13 @@ import React, { useEffect, useState } from "react";
 import { UseAppSelector, useAppDispatch } from "../redux/store/store";
 import { fetchData } from "../redux/slice/eventSlice";
 import { useNavigate } from "react-router-dom";
+import background from "../image/bg.png"
+import backgroun2 from "../image/bg-2.png"
+import img1 from "../image/1.png"
+import img2 from "../image/2.png"
+import calendarImg from "../image/calendar-events.png"
+import arrowLeft from "../image/arrow-left.png"
+import arrowRight from "../image/arrow-right.png"
 
 const Events = () => {
   const dispatch = useAppDispatch();
@@ -23,12 +30,12 @@ const Events = () => {
       <div className="content">
         <div className="main">
           <div className="bg-1">
-            <img src="bg.png" alt="" className="img-bg" />
-            <img src="bg-2.png" alt="" className="img-bg2" />
+            <img src={background} alt="" className="img-bg" />
+            <img src={backgroun2} alt="" className="img-bg2" />
           </div>
 
-          <img src="1.png" alt="" className="img1-events" />
-          <img src="2.png" alt="" className="img2-events" />
+          <img src={img1} alt="" className="img1-events" />
+          <img src={img2} alt="" className="img2-events" />
           <div className="title-events">
             <p className="text-title-events">Sự kiện nổi bật</p>
           </div>
@@ -42,7 +49,7 @@ const Events = () => {
                       <p className="name-event">{item.name}</p>
                       <p className="des-event">{item.description}</p>
                       <img
-                        src="calendar-events.png"
+                        src={calendarImg}
                         alt=""
                         className="img-calendar"
                       />
@@ -61,11 +68,11 @@ const Events = () => {
               </div>
 
               <button className="arrow-left-events" type="submit">
-                <img src="arrow-left.png" alt="" className="icon-left-events" />
+                <img src={arrowLeft} alt="" className="icon-left-events" />
               </button>
               <button className="arrow-right-events" type="submit">
                 <img
-                  src="arrow-right.png"
+                  src={arrowRight}
                   alt=""
                   className="icon-right-events"
                 />

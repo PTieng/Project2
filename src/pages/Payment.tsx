@@ -2,6 +2,10 @@ import { CalendarOutlined } from "@ant-design/icons";
 import { Button, DatePicker } from "antd";
 import dayjs from "dayjs";
 import React, { useState } from "react";
+import background from "../image/bg.png"
+import payment1 from "../image/img-payment.png"
+import vector from "../image/Vector.png"
+import calendarImg from "../image/calendar.png"
 
 const Payment = () => {
   const [date, setDate] = useState("");
@@ -15,10 +19,10 @@ const Payment = () => {
       <div className="content">
         <div className="main-home">
           <div className="payment">
-            <img src="bg.png" alt="" className="img-bg" />
+            <img src={background} alt="" className="img-bg" />
             <div className="title">
               <p className="text-title-payment">Thanh toán</p>
-              <img src="img-payment.png" alt="" className="img6" />
+              <img src={payment1} alt="" className="img6" />
             </div>
 
             <div className="content-main">
@@ -66,7 +70,7 @@ const Payment = () => {
                 <div className="box-title-left2"></div>
               </div>
               <div className="midle-col">
-                <img src="Vector.png" alt="" className="img-vector" />
+                <img src={vector} alt="" className="img-vector" />
               </div>
               <div className="right-box1">
                 <div className="right-box2">
@@ -94,7 +98,7 @@ const Payment = () => {
                           <div className="btn-date">
                             <Button className="btndate">
                               <img
-                                src="calendar.png"
+                                src={calendarImg}
                                 alt=""
                                 className="calendar
                                 "

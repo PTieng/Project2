@@ -5,6 +5,7 @@ import Contact from "../pages/Contact";
 import Events from "../pages/Events";
 import Payment from "../pages/Payment";
 import Details from "../pages/Details";
+import PaySuccess from "../pages/PaySuccess";
 
 const AppRoute = () => {
   return (
@@ -15,6 +16,7 @@ const AppRoute = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/details/:id" element={<Details />} />
+        <Route path="/payment/success" element={<PaySuccess/>} />
       </Routes>
     </div>
   );

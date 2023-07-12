@@ -1,12 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from "../image/logo.png";
+import phone from "../image/frame_21.png";
 const Header = () => {
   return (
     <div>
       <div className="header">
         <div className="navigation">
           <div className="logo">
-            <img src="logo.png" alt="" />
+            <img src={logo} alt="" />
           </div>
           <div className="group-1 d-flex">
             <nav className="navbar">
@@ -29,7 +31,7 @@ const Header = () => {
               </ul>
             </nav>
             <div className="group-2 d-flex">
-              <img src="frame_21.png" alt="" />
+              <img src={phone} alt="" />
               <p className="g2-phone">0123465798</p>
             </div>
           </div>

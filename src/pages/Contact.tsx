@@ -1,6 +1,11 @@
 import { CloseOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 import React, { useState } from "react";
+import background from "../image/bg.png"
+import contact1 from "../image/img-contact-1.png"
+import loaction1 from "../image/location-contact.png"
+import email1 from "../image/email-contact.png"
+import phone1 from "../image/phone.png"
 
 const Contact: React.FC = () => {
   const [showAlert, setShowAlert] = useState(false);
@@ -15,7 +20,7 @@ const Contact: React.FC = () => {
     <div>
       <div className="content">
         <div className="main">
-          <img src="bg.png" alt="" className="img-bg" />
+          <img src={background} alt="" className="img-bg" />
           <div className="title-contact">
             <p className="text-title">Liên hệ</p>
           </div>
@@ -107,7 +112,7 @@ const Contact: React.FC = () => {
             )}
 
             <div className="img-contact">
-              <img src="img-contact-1.png" alt="" className="img1" />
+              <img src={contact1} alt="" className="img1" />
             </div>
 
             <div className="box-right-contact">
@@ -121,7 +126,7 @@ const Contact: React.FC = () => {
                       </p>
 
                       <img
-                        src="location-contact.png"
+                        src={loaction1}
                         alt=""
                         className="icon-location-contact"
                       />
@@ -140,7 +145,7 @@ const Contact: React.FC = () => {
                         investigate@your-site.com
                       </p>
                       <img
-                        src="email-contact.png"
+                        src={email1}
                         alt=""
                         className="icon-email-contact"
                       />
@@ -156,7 +161,7 @@ const Contact: React.FC = () => {
                       <p className="phone-br-contact">Điện thoại:</p>
                       <p className="phone-br-contact-text">+84 145 689 798 </p>
                       <img
-                        src="phone.png"
+                        src={phone1}
                         alt=""
                         className="icon-phone-contact"
                       />
