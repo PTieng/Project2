@@ -1,6 +1,16 @@
-import React from "react";
+import { CloseOutlined } from "@ant-design/icons";
+import { Button } from "antd";
+import React, { useState } from "react";
 
-const Contact = () => {
+const Contact: React.FC = () => {
+  const [showAlert, setShowAlert] = useState(false);
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setShowAlert(true);
+  };
+  const handleClose = () => {
+    setShowAlert(false);
+  };
   return (
     <div>
       <div className="content">
@@ -67,7 +77,11 @@ const Contact = () => {
                         </div>
 
                         <div className="button-contact">
-                          <button className="btn-contact" type="submit">
+                          <button
+                            className="btn-contact"
+                            type="submit"
+                            onClick={handleClick}
+                          >
                             Gửi liên hệ
                           </button>
                         </div>
@@ -77,6 +91,21 @@ const Contact = () => {
                 </div>
               </div>
             </div>
+            {showAlert && (
+              <div className="alert-contact">
+                <p className="alert-contact-text">
+                  <Button
+                    icon={<CloseOutlined />}
+                    style={{ border: 0 }}
+                    className="btn-closeAler-contact"
+                    onClick={handleClose}
+                  ></Button>{" "}
+                  Gửi liên hệ thành công. <br /> Vui lòng kiên nhẫn đợi phản hồi
+                  từ chúng tôi, bạn nhé!
+                </p>
+              </div>
+            )}
+
             <div className="img-contact">
               <img src="img-contact-1.png" alt="" className="img1" />
             </div>

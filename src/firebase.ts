@@ -1,5 +1,5 @@
 import firebase from "firebase/compat/app";
-import "firebase/compat/database";
+import "firebase/compat/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAgdJGe0BkWnQkhyqfchMwlkZjuQDd9-Rc",
@@ -8,7 +8,7 @@ const firebaseConfig = {
   projectId: "reacjs-api",
   storageBucket: "reacjs-api.appspot.com",
   messagingSenderId: "447724774503",
-  appId: "1:447724774503:web:643bac3ff678671181a0c2",
+  appId: "1:447724774503:web:643bac3ff678671181a0c2"
 };
 
 firebase.initializeApp(firebaseConfig);

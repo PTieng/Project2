@@ -4,7 +4,6 @@ import dayjs from "dayjs";
 import React, { useRef, useState } from "react";
 const Home = () => {
   const [date, setDate] = useState("");
-  const datePickerRef = useRef();
 
   const handleDateChange = (e: any) => {
     setDate(dayjs(e).format("DD/MM/YYYY"));
@@ -85,64 +84,71 @@ const Home = () => {
               <div className="right-box2">
                 <div className="right-box3">
                   <div className="right-box4">
-                    <div className="form-input1">
-                      <input type="text" className="input-rightbox-1" />
-                      <img src="icon-input1.png" alt="" className="icon1" />
-                      <img src="arrowIcon.png" alt="" className="icon1-2" />
-                    </div>
-                    <div className="form-input2">
-                      <input
-                        type="number"
-                        className="input-rightbox-2"
-                        placeholder="Số lượng vé"
-                      />
-                      <input
-                        type="text"
-                        className="input-rightbox-2-2"
-                        placeholder="Ngày sử dụng"
-                        value={date}
-                      />
-                      <div className="btn-date">
-                        <Button
-                          className="btndate"
-                          icon={<CalendarOutlined />}
-                        ></Button>
+                    <form action="">
+                      <div className="form-input1">
+                        <input type="text" className="input-rightbox-1" />
+                        <img src="icon-input1.png" alt="" className="icon1" />
+                        <img src="arrowIcon.png" alt="" className="icon1-2" />
+                      </div>
 
-                        <DatePicker
-                          picker="date"
-                          className="date"
-                          onChange={handleDateChange}
-                          style={{ width: "80px", height: "50px", opacity: 0 }}
+                      <div className="form-input2">
+                        <input
+                          type="number"
+                          className="input-rightbox-2"
+                          placeholder="Số lượng vé"
+                        />
+                        <input
+                          type="text"
+                          className="input-rightbox-2-2"
+                          placeholder="Ngày sử dụng"
+                          value={date}
+                        />
+                        <div className="btn-date">
+                          <Button
+                            className="btndate"
+                            icon={<CalendarOutlined />}
+                          ></Button>
+
+                          <DatePicker
+                            picker="date"
+                            className="date"
+                            onChange={handleDateChange}
+                            style={{
+                              width: "80px",
+                              height: "50px",
+                              opacity: 0,
+                            }}
+                          />
+                        </div>
+                      </div>
+                      <div className="form-input3">
+                        <input
+                          type="text"
+                          className="input-rightbox-3"
+                          placeholder="Họ và tên"
                         />
                       </div>
-                    </div>
-                    <div className="form-input3">
-                      <input
-                        type="text"
-                        className="input-rightbox-3"
-                        placeholder="Họ và tên"
-                      />
-                    </div>
-                    <div className="form-input4">
-                      <input
-                        type="text"
-                        className="input-rightbox-4"
-                        placeholder="Số điện thoại"
-                      />
-                    </div>
-                    <div className="form-input5">
-                      <input
-                        type="text"
-                        className="input-rightbox-5"
-                        placeholder="Địa chỉ email"
-                      />
-                    </div>
+                      <div className="form-input4">
+                        <input
+                          type="text"
+                          className="input-rightbox-4"
+                          placeholder="Số điện thoại"
+                        />
+                      </div>
+                      <div className="form-input5">
+                        <input
+                          type="text"
+                          className="input-rightbox-5"
+                          placeholder="Địa chỉ email"
+                        />
+                      </div>
 
-                    <div className="box-btn-book">
-                      <button className="btn-book" type="submit">
-                        Đặt vé
-                      </button>
-                    </div>
+                      <div className="box-btn-book">
+                        <button className="btn-book" type="submit">
+                          Đặt vé
+                        </button>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>
