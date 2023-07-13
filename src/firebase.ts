@@ -16,7 +16,5 @@ export const firestore = firebase.firestore()
 
 export default firebase;
 
-// const firebaseDB = firebase.initializeApp(firebaseConfig);
-// export default firebaseDB.database().ref();
 
 

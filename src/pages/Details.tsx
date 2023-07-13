@@ -27,6 +27,7 @@ const Details = () => {
     }
     fetchData();
   }, [id]);
+
   return (
     <div>
       <div className="content">
@@ -61,10 +62,10 @@ const Details = () => {
                         <p className="date-event">{events?.date}</p>
                         <p className="des-event">{events?.description}</p>
                         <p className="price-event">
-                          {events?.price.toFixed(3)}VNĐ
+                          {events?.price.toFixed(3)} VNĐ
                         </p>
 
-                        <p className="text-1">{events?.description2}</p>
+                        <p className="text-1" id="changeText">{events?.description2}</p>
 
                         <div className="column-2">
                           <img

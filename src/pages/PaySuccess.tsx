@@ -4,9 +4,8 @@ import imgSuccess from "../image/paysuces.png";
 import arrowLeft from "../image/arrow-left.png";
 import arrowRight from "../image/arrow-right.png";
 import imgQR from "../image/qr1.png";
-import tick from "../image/tick.png"
+import tick from "../image/tick.png";
 const PaySuccess = () => {
-
   return (
     <div>
       <div className="content">
@@ -29,7 +28,7 @@ const PaySuccess = () => {
                           <p className="des-QR">VÉ CỔNG</p>
                           <p className="bor-QR">---</p>
                           <p className="date-QR">Ngày sử dụng: 31/05/2021</p>
-                          <img src={tick} alt="" className="tick-QR"/>
+                          <img src={tick} alt="" className="tick-QR" />
                         </div>
                       </div>
                       <button className="arrow-left-events" type="submit">
@@ -50,6 +49,7 @@ const PaySuccess = () => {
                     </div>
                   </div>
                   <p className="quantity">Số lượng : 12 vé</p>
+                  <p className="count-page">Trang 1/3</p>
                 </div>
               </div>
               <img src={imgSuccess} alt="" className="imgSuccess" />
