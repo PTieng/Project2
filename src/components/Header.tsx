@@ -1,8 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logo from "../image/logo.png";
 import phone from "../image/frame_21.png";
 const Header = () => {
+  const location = useLocation();
+
   return (
     <div>
       <div className="header">
@@ -13,18 +15,33 @@ const Header = () => {
           <div className="group-1 d-flex">
             <nav className="navbar">
               <ul className="list-unstyled d-flex">
-                <li className="nav-item active">
-                  <Link to="/" className="text-decoration-none">
+                <li className="nav-item ">
+                  <Link
+                    to="/"
+                    className={`text-decoration-none ${
+                      location.pathname === "/" ? "active" : ""
+                    }`}
+                  >
                     Trang chủ
                   </Link>
                 </li>
                 <li className="nav-item ">
-                  <Link to="/event" className="text-decoration-none">
+                  <Link
+                    to="/event"
+                    className={`text-decoration-none ${
+                      location.pathname === "/event" ? "active" : ""
+                    }`}
+                  >
                     Sự kiện
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/contact" className="text-decoration-none">
+                  <Link
+                    to="/contact"
+                    className={`text-decoration-none ${
+                      location.pathname === "/contact" ? "active" : ""
+                    }`}
+                  >
                     Liên hệ
                   </Link>
                 </li>

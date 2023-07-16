@@ -1,19 +1,36 @@
-import { CalendarOutlined } from "@ant-design/icons";
 import { Button, DatePicker } from "antd";
 import dayjs from "dayjs";
-import React, { useState } from "react";
-import background from "../image/bg.png"
-import payment1 from "../image/img-payment.png"
-import vector from "../image/Vector.png"
-import calendarImg from "../image/calendar.png"
+import React, { useContext, useState } from "react";
+import background from "../image/bg.png";
+import payment1 from "../image/img-payment.png";
+import vector from "../image/Vector.png";
+import calendarImg from "../image/calendar.png";
+import { FormDataContext } from "./Home";
+import { useLocation } from "react-router-dom";
 
 const Payment = () => {
   const [date, setDate] = useState("");
+  const data = useContext(FormDataContext);
+  console.log(data);
 
   const handleDateChange = (e: any) => {
     setDate(dayjs(e).format("DD/MM/YYYY"));
     console.log(date);
   };
+  const location = useLocation();
+  const formData = {
+    packages: new URLSearchParams(location.search).get("packages"),
+    name: new URLSearchParams(location.search).get("name"),
+    quantity: new URLSearchParams(location.search).get("quantity"),
+    price: new URLSearchParams(location.search).get("price"),
+    email: new URLSearchParams(location.search).get("email"),
+    phone: new URLSearchParams(location.search).get("phone"),
+    date: new URLSearchParams(location.search).get("date"),
+  };
+
+  const price = Number(formData.quantity) * Number(formData.price);
+  console.log(price);
+
   return (
     <div>
       <div className="content">
@@ -32,33 +49,57 @@ const Payment = () => {
                     <div className="left-box4">
                       <div className="form-input-left-1">
                         <p className="label">Số tiền thanh toán</p>
-                        <input type="text" className="input-leftbox-1"/>
+                        <input
+                          type="text"
+                          className="input-leftbox-1"
+                          value={price.toFixed(3) + " " + "vnđ"}
+                        />
                       </div>
 
                       <div className="form-input-left-2">
                         <p className="label">Số lượng vé</p>
-                        <input type="text" className="input-leftbox-2" />
+                        <input
+                          type="text"
+                          className="input-leftbox-2"
+                          value={formData.quantity ?? ""}
+                        />
                         <p className="ticket">vé</p>
                       </div>
 
                       <div className="form-input-left-3">
                         <p className="label">Ngày sử dụng</p>
-                        <input type="text" className="input-leftbox-3" />
+                        <input
+                          type="text"
+                          className="input-leftbox-3"
+                          value={formData.date ?? ""}
+                        />
                       </div>
 
                       <div className="form-input-left-4">
                         <p className="label">Thông tin liên hệ</p>
-                        <input type="text" className="input-leftbox-4" />
+                        <input
+                          type="text"
+                          className="input-leftbox-4"
+                          value={formData.name ?? ""}
+                        />
                       </div>
 
                       <div className="form-input-left-5">
                         <p className="label">Điện thoại</p>
-                        <input type="text" className="input-leftbox-5"/>
+                        <input
+                          type="text"
+                          className="input-leftbox-5"
+                          value={formData.phone ?? ""}
+                        />
                       </div>
 
                       <div className="form-input-left-6">
                         <p className="label">Email</p>
-                        <input type="text" className="input-leftbox-6" />
+                        <input
+                          type="text"
+                          className="input-leftbox-6"
+                          value={formData.email ?? ""}
+                        />
                       </div>
                     </div>
                   </div>

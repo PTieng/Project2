@@ -72,7 +72,8 @@
     align-items: center;
 }
 
-.active {
+
+.text-decoration-none.active {
     display: flex;
     padding: 10px 24px;
     align-items: flex-start;
@@ -81,9 +82,19 @@
     border: 2px solid var(--w, #FFF);
     gap: 10px;
     opacity: 0.800000011920929;
-    margin-left: 30px;
+
 
 }
+
+.header ul {
+    margin-top: -10px;
+
+}
+
+
+
+/* active */
+/* .text-decoration-none .active {} */
 
 .nav-item {
     display: flex;
@@ -536,7 +547,7 @@
     box-shadow: -1px 3px 3px 0px rgba(178, 91, 11, 0.50) inset;
     border: none;
     outline: none;
-    padding: 15px;
+    padding-left: 10px;
 
 }
 
@@ -818,6 +829,8 @@
     top: 37%;
     left: 55px;
 }
+
+
 
 .input-contact-email {
     display: flex;
@@ -1513,6 +1526,13 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.payment .date {
+    position: absolute;
+    top: 55%;
+    right: 10%;
+    z-index: 5;
+}
+
 .payment .box-title-right {
     position: absolute;
     z-index: 5;
@@ -1764,9 +1784,10 @@
 }
 
 .calendar {
-    width: 30px;
-    height: 30px;
-    margin-right: 15px !important;
+    width: 25px;
+    height: 25px;
+    margin-left: -16%;
+    z-index: 5;
 }
 
 .payment .form-input-left-1 .label {

@@ -65,7 +65,16 @@ const Details = () => {
                           {events?.price.toFixed(3)} VNĐ
                         </p>
 
-                        <p className="text-1" id="changeText">{events?.description2}</p>
+                        <p className="text-1" id="changeText">
+                          {events?.description2 && (
+                            <>
+                              <span style={{ color: "orange" , fontWeight: "700"}}>
+                                {events.description2.slice(0, 11)}
+                              </span>
+                              {events.description2.slice(11)}
+                            </>
+                          )}
+                        </p>
 
                         <div className="column-2">
                           <img

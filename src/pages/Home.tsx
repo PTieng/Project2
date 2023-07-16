@@ -1,7 +1,6 @@
-import { CalendarOutlined } from "@ant-design/icons";
 import { DatePicker, Button } from "antd";
 import dayjs from "dayjs";
-import React, { useRef, useState } from "react";
+import React, { useState, createContext } from "react";
 import ballon1 from "../image/img_ballon1.png";
 import ballon2 from "../image/img_ballon2.png";
 import img3 from "../image/img3.png";
@@ -16,11 +15,63 @@ import vector from "../image/Vector.png";
 import input1 from "../image/icon-input1.png";
 import arrowIcon from "../image/arrowIcon.png";
 import start from "../image/star.png";
-const Home = () => {
-  const [date, setDate] = useState("");
+import calendarImg from "../image/calendar.png";
+import { useDispatch } from "react-redux";
+import { HomeInput } from "../redux/slice/homeSlice";
 
-  const handleDateChange = (e: any) => {
-    setDate(dayjs(e).format("DD/MM/YYYY"));
+import { useNavigate } from "react-router-dom";
+
+export const FormDataContext = createContext<HomeInput | null>(null);
+
+const Home = () => {
+  const [date, setDate] = useState<string>("");
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState<HomeInput>({
+    packages: "",
+    name: "",
+    quantity: "1",
+    price: 90,
+    email: "",
+    phone: "",
+    date: "",
+  });
+  const dispatch: any = useDispatch();
+
+  const handleChange = (e: any) => {
+    setFormData({
+      ...formData,
+      // date: date,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = () => {
+    navigate(
+      `/payment?packages=${encodeURIComponent(
+        formData.packages
+      )}&name=${encodeURIComponent(
+        formData.name
+      )}&quantity=${encodeURIComponent(
+        formData.quantity
+      )}&price=${encodeURIComponent(formData.price)}&email=${encodeURIComponent(
+        formData.email
+      )}&phone=${encodeURIComponent(formData.phone)}&date=${encodeURIComponent(
+        formData.date || ""
+      )}`
+    );
+  };
+
+  // const handleDateChange = (e: any) => {
+  //   setDate(dayjs(e).format("DD/MM/YYYY"));
+  // };
+  const handleDateChange = (date: dayjs.Dayjs | null) => {
+    if (date) {
+      const formattedDate = date.format("DD/MM/YYYY");
+      setFormData({
+        ...formData,
+        date: formattedDate,
+      });
+    }
   };
   return (
     <div>
@@ -103,9 +154,18 @@ const Home = () => {
                 <div className="right-box2">
                   <div className="right-box3">
                     <div className="right-box4">
-                      <form action="">
+                      <form action="" onSubmit={handleSubmit}>
                         <div className="form-input1">
-                          <input type="text" className="input-rightbox-1" />
+                          <select
+                            className="input-rightbox-1"
+                            onChange={handleChange}
+                            required
+                            name="packages"
+                            value={formData.packages}
+                          >
+                            <option value="">Chọn gói</option>
+                            <option value="Gói 1">Gói gia đình</option>
+                          </select>
                           <img src={input1} alt="" className="icon1" />
                           <img src={arrowIcon} alt="" className="icon1-2" />
                         </div>
@@ -116,18 +176,29 @@ const Home = () => {
                             className="input-rightbox-2"
                             placeholder="Số lượng vé"
                             min={1}
+                            onChange={handleChange}
+                            name="quantity"
+                            required
+                            value={formData.quantity}
                           />
                           <input
                             type="text"
                             className="input-rightbox-2-2"
                             placeholder="Ngày sử dụng"
-                            value={date}
+                            value={formData.date || ""}
+                            onChange={handleChange}
+                            name="date"
+                            required
                           />
                           <div className="btn-date">
-                            <Button
-                              className="btndate"
-                              icon={<CalendarOutlined />}
-                            ></Button>
+                            <Button className="btndate">
+                              <img
+                                src={calendarImg}
+                                alt=""
+                                className="calendar
+                                "
+                              />
+                            </Button>
 
                             <DatePicker
                               picker="date"
@@ -137,6 +208,8 @@ const Home = () => {
                                 width: "80px",
                                 height: "50px",
                                 opacity: 0,
+                                position: "absolute",
+                                top: " 28%",
                               }}
                             />
                           </div>
@@ -146,6 +219,10 @@ const Home = () => {
                             type="text"
                             className="input-rightbox-3"
                             placeholder="Họ và tên"
+                            onChange={handleChange}
+                            name="name"
+                            value={formData.name}
+                            required
                           />
                         </div>
                         <div className="form-input4">
@@ -153,6 +230,10 @@ const Home = () => {
                             type="text"
                             className="input-rightbox-4"
                             placeholder="Số điện thoại"
+                            onChange={handleChange}
+                            name="phone"
+                            value={formData.phone}
+                            required
                           />
                         </div>
                         <div className="form-input5">
@@ -160,6 +241,10 @@ const Home = () => {
                             type="text"
                             className="input-rightbox-5"
                             placeholder="Địa chỉ email"
+                            onChange={handleChange}
+                            name="email"
+                            value={formData.email}
+                            required
                           />
                         </div>
 
