@@ -50,7 +50,7 @@ const Events = () => {
                       <p className="des-event">{item.description}</p>
                       <img src={calendarImg} alt="" className="img-calendar" />
                       <p className="date-event">{item.date}</p>
-                      <p className="price-event">{item.price.toFixed(3)} VNĐ</p>
+                      <p className="price-event">{item.price}.000 VNĐ</p>
                       <button
                         className="btn-detail-events"
                         type="submit"

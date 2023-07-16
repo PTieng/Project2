@@ -2319,13 +2319,13 @@
     position: relative;
     top: 87%;
     z-index: 5;
-    left: 15.5%;
+    left: 13.5%;
 
 }
 
 .payment-success .col-3 {
     position: relative;
-    left: 15%;
+    left: 12%;
     background-color: white;
     width: 220px;
     height: 323px;
@@ -2376,7 +2376,7 @@
     color: var(--text, #23221F);
     text-align: center;
     font-family: Montserrat;
-    font-size: 15px;
+    font-size: 14px;
     font-style: normal;
     font-weight: 500;
     line-height: 19px;
@@ -2444,3 +2444,53 @@
     color: #FF8A00;
     text-decoration: none;
 }
+
+.payment-success .row {
+    width: 1089px;
+    position: relative;
+    left: 2%;
+    height: 350px;
+}
+
+
+
+:where(.css-dev-only-do-not-override-14wwjjs).ant-btn-primary {
+    color: #fff;
+
+    box-shadow: 0 2px 0 rgba(5, 145, 255, 0.1);
+    display: none;
+}
+
+.contact :where(.css-dev-only-do-not-override-14wwjjs).ant-btn {
+    font-size: 14px;
+    height: 32px;
+    padding: 4px 15px;
+    border-radius: 6px;
+    display: none;
+}
+
+:where(.css-dev-only-do-not-override-14wwjjs).ant-modal .ant-modal-close:hover {
+    color: red;
+    background-color: ffffff;
+}
+
+:where(.css-dev-only-do-not-override-14wwjjs).ant-modal {
+    top: 240px;
+    width: 350px !important;
+}
+
+.text-modal {
+    position: relative;
+    padding: 0px 10px -1px;
+    /* top: 8% !important; */
+    margin-top: 7%;
+    font-size: 15px;
+}
+
+:where(.css-1m62vyb).ant-btn {
+    font-size: 14px;
+    height: 32px;
+    padding: 4px 15px;
+    border-radius: 6px;
+    display: none;
+}   

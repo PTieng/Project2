@@ -6,19 +6,13 @@ import payment1 from "../image/img-payment.png";
 import vector from "../image/Vector.png";
 import calendarImg from "../image/calendar.png";
 import { FormDataContext } from "./Home";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { createFormData } from "../redux/slice/homeSlice";
 
 const Payment = () => {
-  const [date, setDate] = useState("");
-  const data = useContext(FormDataContext);
-  console.log(data);
-
-  const handleDateChange = (e: any) => {
-    setDate(dayjs(e).format("DD/MM/YYYY"));
-    console.log(date);
-  };
   const location = useLocation();
-  const formData = {
+  const formData: any = {
     packages: new URLSearchParams(location.search).get("packages"),
     name: new URLSearchParams(location.search).get("name"),
     quantity: new URLSearchParams(location.search).get("quantity"),
@@ -28,8 +22,34 @@ const Payment = () => {
     date: new URLSearchParams(location.search).get("date"),
   };
 
+  const [date, setDate] = useState("");
+  const data = useContext(FormDataContext);
+  // console.log(data);
+
+  const handleDateChange = (e: any) => {
+    setDate(dayjs(e).format("DD/MM/YYYY"));
+    // console.log(date);
+  };
+
   const price = Number(formData.quantity) * Number(formData.price);
-  console.log(price);
+  const totalPrice = price.toFixed(3) + " " + "vnđ";
+  // console.log(totalPrice);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const formInput = {
+      ...formData,
+      price: totalPrice,
+      date: formData.date,
+    };
+    const response = await dispatch(createFormData(formInput) as any);
+    const ticketId = response.payload.id;
+    navigate(`/payment/success/${ticketId}`);
+    console.log(ticketId);
+  };
 
   return (
     <div>
@@ -52,7 +72,7 @@ const Payment = () => {
                         <input
                           type="text"
                           className="input-leftbox-1"
-                          value={price.toFixed(3) + " " + "vnđ"}
+                          value={totalPrice}
                         />
                       </div>
 
@@ -113,72 +133,81 @@ const Payment = () => {
               <div className="midle-col">
                 <img src={vector} alt="" className="img-vector" />
               </div>
-              <div className="right-box1">
-                <div className="right-box2">
-                  <div className="right-box3">
-                    <div className="right-box4">
-                      <form action="">
-                        <div className="form-input1">
-                          <p className="label">Số thẻ</p>
-                          <input type="text" className="input-rightbox-1" />
-                        </div>
+              <form>
+                <div className="right-box1">
+                  <div className="right-box2">
+                    <div className="right-box3">
+                      <div className="right-box4">
+                        <form action="">
+                          <div className="form-input1">
+                            <p className="label">Số thẻ</p>
+                            <input type="text" className="input-rightbox-1" />
+                          </div>
 
-                        <div className="form-input2">
-                          <p className="label">Họ và tên chủ thẻ</p>
-                          <input type="text" className="input-rightbox-2" />
-                        </div>
+                          <div className="form-input2">
+                            <p className="label">Họ và tên chủ thẻ</p>
+                            <input type="text" className="input-rightbox-2" />
+                          </div>
 
-                        <div className="form-input3">
-                          <p className="label">Ngày hết hạn</p>
+                          <div className="form-input3">
+                            <p className="label">Ngày hết hạn</p>
 
-                          <input
-                            type="text"
-                            className="input-rightbox-3"
-                            value={date}
-                          />
-                          <div className="btn-date">
-                            <Button className="btndate">
-                              <img
-                                src={calendarImg}
-                                alt=""
-                                className="calendar
+                            <input
+                              type="text"
+                              className="input-rightbox-3"
+                              value={date}
+                            />
+                            <div className="btn-date">
+                              <Button className="btndate">
+                                <img
+                                  src={calendarImg}
+                                  alt=""
+                                  className="calendar
                                 "
-                              />
-                            </Button>
+                                />
+                              </Button>
 
-                            <DatePicker
-                              picker="date"
-                              className="date"
-                              onChange={handleDateChange}
-                              style={{
-                                width: "80px",
-                                height: "50px",
-                                opacity: 0,
-                              }}
+                              <DatePicker
+                                picker="date"
+                                className="date"
+                                onChange={handleDateChange}
+                                style={{
+                                  width: "80px",
+                                  height: "50px",
+                                  opacity: 0,
+                                }}
+                              />
+                            </div>
+                          </div>
+
+                          <div className="form-input4">
+                            <p className="label">CVV/CVC</p>
+                            <input
+                              type="password"
+                              className="input-rightbox-4"
                             />
                           </div>
-                        </div>
 
-                        <div className="form-input4">
-                          <p className="label">CVV/CVC</p>
-                          <input type="password" className="input-rightbox-4" />
-                        </div>
-
-                        <div className="box-btn-book">
-                          <button className="btn-book" type="submit">
-                            THANH TOÁN
-                          </button>
-                        </div>
-                      </form>
+                          <div className="box-btn-book">
+                            <button
+                              className="btn-book"
+                              type="submit"
+                              onClick={handleSubmit}
+                            >
+                              THANH TOÁN
+                            </button>
+                          </div>
+                        </form>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="box-title-right">
-                <p className="text">THÔNG TIN THANH TOÁN</p>
+                <div className="box-title-right">
+                  <p className="text">THÔNG TIN THANH TOÁN</p>
 
-                <div className="box-title-right2"></div>
-              </div>
+                  <div className="box-title-right2"></div>
+                </div>
+              </form>
             </div>
           </div>
         </div>

@@ -16,7 +16,7 @@ const AppRoute = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/details/:id" element={<Details />} />
-        <Route path="/payment/success" element={<PaySuccess/>} />
+        <Route path="/payment/success/:id" element={<PaySuccess />} />
       </Routes>
     </div>
   );

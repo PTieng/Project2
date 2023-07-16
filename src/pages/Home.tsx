@@ -24,23 +24,24 @@ import { useNavigate } from "react-router-dom";
 export const FormDataContext = createContext<HomeInput | null>(null);
 
 const Home = () => {
-  const [date, setDate] = useState<string>("");
   const navigate = useNavigate();
   const [formData, setFormData] = useState<HomeInput>({
     packages: "",
     name: "",
-    quantity: "1",
+    quantity: 1,
     price: 90,
     email: "",
     phone: "",
     date: "",
+    numCard: "",
+    endDate: "",
+    cvv: "",
   });
   const dispatch: any = useDispatch();
 
   const handleChange = (e: any) => {
     setFormData({
       ...formData,
-      // date: date,
       [e.target.name]: e.target.value,
     });
   };
@@ -61,9 +62,6 @@ const Home = () => {
     );
   };
 
-  // const handleDateChange = (e: any) => {
-  //   setDate(dayjs(e).format("DD/MM/YYYY"));
-  // };
   const handleDateChange = (date: dayjs.Dayjs | null) => {
     if (date) {
       const formattedDate = date.format("DD/MM/YYYY");
@@ -176,6 +174,7 @@ const Home = () => {
                             className="input-rightbox-2"
                             placeholder="Số lượng vé"
                             min={1}
+                            max={30}
                             onChange={handleChange}
                             name="quantity"
                             required
