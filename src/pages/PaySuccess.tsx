@@ -5,13 +5,13 @@ import arrowLeft from "../image/arrow-left.png";
 import arrowRight from "../image/arrow-right.png";
 import imgQR from "../image/qr1.png";
 import tick from "../image/tick.png";
-import { UseAppSelector, useAppDispatch } from "../redux/store/store";
-import { HomeInput, fetchData } from "../redux/slice/homeSlice";
+// import {  useAppDispatch } from "../redux/store/store";
+import { HomeInput } from "../redux/slice/homeSlice";
 import { useParams } from "react-router-dom";
 import { firestore } from "../firebase";
 
 const PaySuccess = () => {
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
   const { id } = useParams<{ id: string }>();
   const [data, setData] = useState<HomeInput | null>(null);
 
