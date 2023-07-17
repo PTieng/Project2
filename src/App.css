@@ -74,22 +74,23 @@
 
 
 .text-decoration-none.active {
-    display: flex;
+    /* display: flex;
     padding: 10px 24px;
     align-items: flex-start;
     align-items: center;
     border-radius: 33px;
     border: 2px solid var(--w, #FFF);
     gap: 10px;
-    opacity: 0.800000011920929;
+    opacity: 0.800000011920929; */
 
-
+    border-radius: 33px;
+    border: 2px solid var(--w, #FFF);
+    display: flex;
+    padding: 10px 24px;
+    align-items: flex-start;
+    gap: 10px;
 }
 
-.header ul {
-    margin-top: -10px;
-
-}
 
 
 
@@ -111,6 +112,7 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    margin-top: -7%;
 }
 
 .content {
@@ -2404,6 +2406,13 @@
     opacity: 0.5;
 }
 
+.payment-success .no-tickets {
+    position: relative;
+    top: 52%;
+    left: 46%;
+    font-size: 18px;
+}
+
 
 :where(.css-dev-only-do-not-override-14wwjjs).ant-picker-dropdown .ant-picker-content th {
     height: 36px;
@@ -2470,7 +2479,7 @@
 }
 
 :where(.css-dev-only-do-not-override-14wwjjs).ant-modal .ant-modal-close:hover {
-    color: red;
+    color: #FF8A00;
     background-color: ffffff;
 }
 
@@ -2493,4 +2502,12 @@
     padding: 4px 15px;
     border-radius: 6px;
     display: none;
-}   
+}
+
+/* .payment .aler-error {
+    background-color: #93000A;
+    width: 150px;
+    height: 200px;
+    position: relative;
+    z-index: 5;
+} */

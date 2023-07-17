@@ -24,7 +24,7 @@ const Payment = () => {
 
   const [date, setDate] = useState("");
   const data = useContext(FormDataContext);
-  // console.log(data);
+  console.log(data);
 
   const handleDateChange = (e: any) => {
     setDate(dayjs(e).format("DD/MM/YYYY"));
@@ -32,7 +32,8 @@ const Payment = () => {
   };
 
   const price = Number(formData.quantity) * Number(formData.price);
-  const totalPrice = price.toFixed(3) + " " + "vnđ";
+  const totalPrice =
+    price.toFixed(3).replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " vnđ";
   // console.log(totalPrice);
 
   const dispatch = useDispatch();
@@ -200,6 +201,9 @@ const Payment = () => {
                         </form>
                       </div>
                     </div>
+                  </div>
+                  <div className="aler-error">
+                    <p className="label"></p>
                   </div>
                 </div>
                 <div className="box-title-right">
