@@ -5,15 +5,13 @@ import arrowLeft from "../image/arrow-left.png";
 import arrowRight from "../image/arrow-right.png";
 import imgQR from "../image/qr1.png";
 import tick from "../image/tick.png";
-import {  useAppDispatch } from "../redux/store/store";
+import { useAppDispatch } from "../redux/store/store";
 import { HomeInput } from "../redux/slice/homeSlice";
 import { useParams } from "react-router-dom";
 import { firestore } from "../firebase";
 
 const PaySuccess = () => {
   const dispatch = useAppDispatch();
-  console.log(dispatch)
-  const [currentPage, setCurrentPage] = useState(1);
 
   const { id } = useParams<{ id: string }>();
   const [data, setData] = useState<HomeInput | null>(null);
@@ -33,21 +31,7 @@ const PaySuccess = () => {
     fetData();
   }, [id]);
 
-  console.log(data);
-
-  const handlePrevPage = () => {
-    if (currentPage) {
-      setCurrentPage(currentPage - 1);
-    
-    }
-  };
-
-  const handleNextPage = () => {
-    if (currentPage ) {
-      setCurrentPage(currentPage + 1);
-     
-    }
-  };
+  // console.log(data);
 
   return (
     <div>
@@ -88,7 +72,7 @@ const PaySuccess = () => {
                           <p className="no-tickets">No tickets found.</p>
                         )}
                       </div>
-                      <button className="arrow-left-events" type="submit" onClick={handlePrevPage}>
+                      <button className="arrow-left-events" type="submit">
                         <img
                           src={arrowLeft}
                           alt=""
@@ -96,7 +80,7 @@ const PaySuccess = () => {
                         />
                       </button>
 
-                      <button className="arrow-right-events" type="submit" onClick={handleNextPage}>
+                      <button className="arrow-right-events" type="submit">
                         <img
                           src={arrowRight}
                           alt=""

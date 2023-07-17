@@ -44,7 +44,7 @@ const Events = () => {
               <div className="box-events">
                 <div className="row">
                   {data.map((item) => (
-                    <div className="col-3">
+                    <div className="col-3" key={item.id}>
                       <img src={item.img} alt="" className="img-events" />
                       <p className="name-event">{item.name}</p>
                       <p className="des-event">{item.description}</p>

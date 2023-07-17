@@ -38,7 +38,7 @@ const Home = () => {
     cvv: "",
   });
   const dispatch: any = useDispatch();
-  console.log(dispatch)
+  // console.log(dispatch)
 
   const handleChange = (e: any) => {
     setFormData({

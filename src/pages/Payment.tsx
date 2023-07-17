@@ -1,6 +1,6 @@
 import { Button, DatePicker } from "antd";
 import dayjs from "dayjs";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import background from "../image/bg.png";
 import payment1 from "../image/img-payment.png";
 import vector from "../image/Vector.png";
@@ -27,7 +27,7 @@ const Payment = () => {
 
   const [date, setDate] = useState("");
   const data = useContext(FormDataContext);
-  console.log(data);
+  // console.log(data);
 
   const handleDateChange = (e: any) => {
     setDate(dayjs(e).format("DD/MM/YYYY"));
@@ -50,6 +50,7 @@ const Payment = () => {
       date: formData.date,
       setError: true,
     };
+    console.log(error);
     const response = await dispatch(createFormData(formInput) as any);
     const ticketId = response.payload.id;
     navigate(`/payment/success/${ticketId}`);
@@ -77,7 +78,7 @@ const Payment = () => {
                         <input
                           type="text"
                           className="input-leftbox-1"
-                          value={totalPrice}
+                          defaultValue={totalPrice}
                         />
                       </div>
 
@@ -86,7 +87,7 @@ const Payment = () => {
                         <input
                           type="text"
                           className="input-leftbox-2"
-                          value={formData.quantity ?? ""}
+                          defaultValue={formData.quantity ?? ""}
                         />
                         <p className="ticket">vé</p>
                       </div>
@@ -96,7 +97,7 @@ const Payment = () => {
                         <input
                           type="text"
                           className="input-leftbox-3"
-                          value={formData.date ?? ""}
+                          defaultValue={formData.date ?? ""}
                         />
                       </div>
 
@@ -105,7 +106,7 @@ const Payment = () => {
                         <input
                           type="text"
                           className="input-leftbox-4"
-                          value={formData.name ?? ""}
+                          defaultValue={formData.name ?? ""}
                         />
                       </div>
 
@@ -114,7 +115,7 @@ const Payment = () => {
                         <input
                           type="text"
                           className="input-leftbox-5"
-                          value={formData.phone ?? ""}
+                          defaultValue={formData.phone ?? ""}
                         />
                       </div>
 
@@ -123,7 +124,7 @@ const Payment = () => {
                         <input
                           type="text"
                           className="input-leftbox-6"
-                          value={formData.email ?? ""}
+                          defaultValue={formData.email ?? ""}
                         />
                       </div>
                     </div>
@@ -154,81 +155,77 @@ const Payment = () => {
               <div className="midle-col">
                 <img src={vector} alt="" className="img-vector" />
               </div>
-              <form>
-                <div className="right-box1">
-                  <div className="right-box2">
-                    <div className="right-box3">
-                      <div className="right-box4">
-                        <form action="">
-                          <div className="form-input1">
-                            <p className="label">Số thẻ</p>
-                            <input type="text" className="input-rightbox-1" />
-                          </div>
 
-                          <div className="form-input2">
-                            <p className="label">Họ và tên chủ thẻ</p>
-                            <input type="text" className="input-rightbox-2" />
-                          </div>
+              <div className="right-box1">
+                <div className="right-box2">
+                  <div className="right-box3">
+                    <div className="right-box4">
+                      <form action="">
+                        <div className="form-input1">
+                          <p className="label">Số thẻ</p>
+                          <input type="text" className="input-rightbox-1" />
+                        </div>
 
-                          <div className="form-input3">
-                            <p className="label">Ngày hết hạn</p>
+                        <div className="form-input2">
+                          <p className="label">Họ và tên chủ thẻ</p>
+                          <input type="text" className="input-rightbox-2" />
+                        </div>
 
-                            <input
-                              type="text"
-                              className="input-rightbox-3"
-                              value={date}
-                            />
-                            <div className="btn-date">
-                              <Button className="btndate">
-                                <img
-                                  src={calendarImg}
-                                  alt=""
-                                  className="calendar
+                        <div className="form-input3">
+                          <p className="label">Ngày hết hạn</p>
+
+                          <input
+                            type="text"
+                            className="input-rightbox-3"
+                            defaultValue={date}
+                          />
+                          <div className="btn-date">
+                            <Button className="btndate">
+                              <img
+                                src={calendarImg}
+                                alt=""
+                                className="calendar
                                 "
-                                />
-                              </Button>
-
-                              <DatePicker
-                                picker="date"
-                                className="date"
-                                onChange={handleDateChange}
-                                style={{
-                                  width: "80px",
-                                  height: "50px",
-                                  opacity: 0,
-                                }}
                               />
-                            </div>
-                          </div>
+                            </Button>
 
-                          <div className="form-input4">
-                            <p className="label">CVV/CVC</p>
-                            <input
-                              type="password"
-                              className="input-rightbox-4"
+                            <DatePicker
+                              picker="date"
+                              className="date"
+                              onChange={handleDateChange}
+                              style={{
+                                width: "80px",
+                                height: "50px",
+                                opacity: 0,
+                              }}
                             />
                           </div>
+                        </div>
 
-                          <div className="box-btn-book">
-                            <button
-                              className="btn-book"
-                              type="submit"
-                              onClick={handleSubmit}
-                            >
-                              THANH TOÁN
-                            </button>
-                          </div>
-                        </form>
-                      </div>
+                        <div className="form-input4">
+                          <p className="label">CVV/CVC</p>
+                          <input type="password" className="input-rightbox-4" />
+                        </div>
+
+                        <div className="box-btn-book">
+                          <button
+                            className="btn-book"
+                            type="submit"
+                            onClick={handleSubmit}
+                          >
+                            THANH TOÁN
+                          </button>
+                        </div>
+                      </form>
                     </div>
                   </div>
                 </div>
-                <div className="box-title-right">
-                  <p className="text">THÔNG TIN THANH TOÁN</p>
+              </div>
+              <div className="box-title-right">
+                <p className="text">THÔNG TIN THANH TOÁN</p>
 
-                  <div className="box-title-right2"></div>
-                </div>
-              </form>
+                <div className="box-title-right2"></div>
+              </div>
             </div>
           </div>
         </div>

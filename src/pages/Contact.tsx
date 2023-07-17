@@ -92,7 +92,7 @@ const Contact: React.FC = () => {
                           >
                             Gửi liên hệ
                           </button>
-                          <Modal visible={isModalOpen} cancelText={false} onCancel={handleCancel} footer={null}>
+                          <Modal open={isModalOpen} cancelText={false} onCancel={handleCancel} footer={null}>
                             <p className="text-modal">
                               Gửi liên hệ thành công. <br /> Vui lòng kiên nhẫn
                               đợi phản hồi từ chúng tôi, bạn nhé!
