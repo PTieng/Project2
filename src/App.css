@@ -16,6 +16,9 @@
 .navigation {
     width: 1538px;
     height: 90.816px;
+
+    /* width: 100%;
+    height: 12%; */
     flex-shrink: 0;
     background-color: #ED7200;
     border-end-end-radius: 40%;
@@ -2504,10 +2507,42 @@
     display: none;
 }
 
-/* .payment .aler-error {
-    background-color: #93000A;
-    width: 150px;
-    height: 200px;
+.payment .alert-error {
+    background-color: #ffffff;
+    width: 300px;
+    height: 180px;
+    position: absolute;
+    z-index: 10;
+    left: 40%;
+    top: 42%;
+    border-radius: 13%;
+}
+
+.payment .alert-error .box-top {
     position: relative;
-    z-index: 5;
-} */
+    width: 300px;
+    height: 50px;
+    background: #FF8B15;
+}
+
+.payment .sadImg {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    top: 38%;
+    z-index: 11;
+    left: 47.5%;
+}
+
+.payment .alert-error .box-bottom {
+    position: relative;
+    width: 300px;
+    height: 100%;
+}
+
+.payment .alert-error .box-bottom p {
+    position: relative;
+    font-size: 15px;
+    padding: 15px;
+}
+

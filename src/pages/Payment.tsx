@@ -1,6 +1,6 @@
 import { Button, DatePicker } from "antd";
 import dayjs from "dayjs";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import background from "../image/bg.png";
 import payment1 from "../image/img-payment.png";
 import vector from "../image/Vector.png";
@@ -9,8 +9,11 @@ import { FormDataContext } from "./Home";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { createFormData } from "../redux/slice/homeSlice";
+import sad from "../image/sad.png";
 
 const Payment = () => {
+  const [error, setError] = useState(false);
+
   const location = useLocation();
   const formData: any = {
     packages: new URLSearchParams(location.search).get("packages"),
@@ -45,6 +48,7 @@ const Payment = () => {
       ...formData,
       price: totalPrice,
       date: formData.date,
+      setError: true,
     };
     const response = await dispatch(createFormData(formInput) as any);
     const ticketId = response.payload.id;
@@ -126,6 +130,22 @@ const Payment = () => {
                   </div>
                 </div>
               </div>
+              {error && (
+                <div className="pay-fail">
+                  <img src={sad} alt="" className="sadImg" />
+                  <div className="alert-error">
+                    <div className="box-top"></div>
+                    <div className="box-bottom">
+                      <p>
+                        Hình như đã có lỗi xảy ra khi thanh toán... Vui lòng
+                        kiểm tra lại thông tin liên hệ, thông tin thẻ và thử
+                        lại.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
               <div className="box-title-left">
                 <p className="text">VÉ CỔNG - VÉ GIA ĐÌNH</p>
 
@@ -201,9 +221,6 @@ const Payment = () => {
                         </form>
                       </div>
                     </div>
-                  </div>
-                  <div className="aler-error">
-                    <p className="label"></p>
                   </div>
                 </div>
                 <div className="box-title-right">
