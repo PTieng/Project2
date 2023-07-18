@@ -1,3 +1,4 @@
+import contactSlice from "./../slice/contactSlice";
 import { configureStore } from "@reduxjs/toolkit";
 import eventSlice from "../slice/eventSlice";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
@@ -7,7 +8,7 @@ export const store = configureStore({
   reducer: {
     homeInput: homeSlice,
     events: eventSlice,
-   
+    contacts: contactSlice,
   },
 });
 

@@ -5,10 +5,10 @@ import contact1 from "../image/img-contact-1.png";
 import loaction1 from "../image/location-contact.png";
 import email1 from "../image/email-contact.png";
 import phone1 from "../image/phone.png";
+import { useDispatch } from "react-redux";
+import { Contacts, createFormData } from "../redux/slice/contactSlice";
 
-const Contact: React.FC = () => {
-  
-
+const Contact = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
@@ -18,6 +18,31 @@ const Contact: React.FC = () => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+  const dispatch: any = useDispatch();
+  const [data, setData] = useState<Contacts>({
+    name: "",
+    email: "",
+    phone: "",
+    address: "",
+    message: "",
+  });
+
+  const onChangeContact = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    setData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async () => {
+  showModal()
+
+   await dispatch(createFormData(data));
+    console.log(data);
+  };
+
   return (
     <div>
       <div className="content">
@@ -49,6 +74,9 @@ const Contact: React.FC = () => {
                             type="text"
                             placeholder="Tên"
                             className="input-contact-name"
+                            value={data.name}
+                            onChange={onChangeContact}
+                            name="name"
                           />
                         </div>
                         <div className="box-email">
@@ -56,6 +84,9 @@ const Contact: React.FC = () => {
                             type="email"
                             placeholder="Email"
                             className="input-contact-email"
+                            value={data.email}
+                            onChange={onChangeContact}
+                            name="email"
                           />
                         </div>
 
@@ -64,6 +95,9 @@ const Contact: React.FC = () => {
                             type="text"
                             placeholder="Số điện thoại"
                             className="input-contact-phone"
+                            value={data.phone}
+                            onChange={onChangeContact}
+                            name="phone"
                           />
                         </div>
 
@@ -72,6 +106,9 @@ const Contact: React.FC = () => {
                             type="text"
                             placeholder="Địa chỉ"
                             className="input-contact-address"
+                            value={data.address}
+                            onChange={onChangeContact}
+                            name="address"
                           />
                         </div>
 
@@ -80,19 +117,28 @@ const Contact: React.FC = () => {
                             type="text"
                             placeholder="Lời nhắn"
                             className="input-contact-mess"
+                            value={data.message}
+                            onChange={onChangeContact}
+                            name="message"
                           />
                         </div>
 
                         <div className="button-contact">
                           <button
                             className="btn-contact"
-                            type="submit"
+                            
                             // onClick={handleClick}
-                            onClick={showModal}
+                            onClick={handleSubmit}
+                            
                           >
                             Gửi liên hệ
                           </button>
-                          <Modal open={isModalOpen} cancelText={false} onCancel={handleCancel} footer={null}>
+                          <Modal
+                            open={isModalOpen}
+                            cancelText={false}
+                            onCancel={handleCancel}
+                            footer={null}
+                          >
                             <p className="text-modal">
                               Gửi liên hệ thành công. <br /> Vui lòng kiên nhẫn
                               đợi phản hồi từ chúng tôi, bạn nhé!

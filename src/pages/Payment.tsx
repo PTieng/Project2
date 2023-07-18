@@ -1,11 +1,11 @@
-import { Button, DatePicker } from "antd";
+import { Button, DatePicker, Modal } from "antd";
 import dayjs from "dayjs";
 import React, { useContext, useState } from "react";
 import background from "../image/bg.png";
 import payment1 from "../image/img-payment.png";
 import vector from "../image/Vector.png";
 import calendarImg from "../image/calendar.png";
-import { FormDataContext } from "./Home";
+// import { FormDataContext } from "./Home";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { createFormData } from "../redux/slice/homeSlice";
@@ -13,6 +13,20 @@ import sad from "../image/sad.png";
 
 const Payment = () => {
   const [error, setError] = useState(false);
+  const [date, setDate] = useState("");
+  // const data = useContext(FormDataContext);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
 
   const location = useLocation();
   const formData: any = {
@@ -25,36 +39,33 @@ const Payment = () => {
     date: new URLSearchParams(location.search).get("date"),
   };
 
-  const [date, setDate] = useState("");
-  const data = useContext(FormDataContext);
-  // console.log(data);
-
   const handleDateChange = (e: any) => {
     setDate(dayjs(e).format("DD/MM/YYYY"));
-    // console.log(date);
   };
+
+  // const handleInputSubmit = () => {
+  //   setFormCompleted(!data?.numCard || !data.name || !data.date || !data.cvv);
+  // };
 
   const price = Number(formData.quantity) * Number(formData.price);
   const totalPrice =
     price.toFixed(3).replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " vnđ";
-  // console.log(totalPrice);
-
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // if (!data?.numCard || !data.name || !data.date || !data.cvv) {
+    //   showModal();
+    //   return
+    // }else {}
+
     const formInput = {
       ...formData,
       price: totalPrice,
       date: formData.date,
-      setError: true,
     };
-    console.log(error);
     const response = await dispatch(createFormData(formInput) as any);
     const ticketId = response.payload.id;
     navigate(`/payment/success/${ticketId}`);
-    console.log(ticketId);
   };
 
   return (
@@ -131,21 +142,17 @@ const Payment = () => {
                   </div>
                 </div>
               </div>
-              {error && (
-                <div className="pay-fail">
-                  <img src={sad} alt="" className="sadImg" />
-                  <div className="alert-error">
-                    <div className="box-top"></div>
-                    <div className="box-bottom">
-                      <p>
-                        Hình như đã có lỗi xảy ra khi thanh toán... Vui lòng
-                        kiểm tra lại thông tin liên hệ, thông tin thẻ và thử
-                        lại.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              )}
+              <Modal
+                open={isModalOpen}
+                cancelText={false}
+                onCancel={handleCancel}
+                footer={null}
+              >
+                <p className="text-modal">
+                  Gửi liên hệ thành công. <br /> Vui lòng kiên nhẫn đợi phản hồi
+                  từ chúng tôi, bạn nhé!
+                </p>
+              </Modal>
 
               <div className="box-title-left">
                 <p className="text">VÉ CỔNG - VÉ GIA ĐÌNH</p>
@@ -163,12 +170,22 @@ const Payment = () => {
                       <form action="">
                         <div className="form-input1">
                           <p className="label">Số thẻ</p>
-                          <input type="text" className="input-rightbox-1" />
+                          <input
+                            type="text"
+                            className="input-rightbox-1"
+                            // value={data?.numCard}
+                            // onChange={handleInputSubmit}
+                          />
                         </div>
 
                         <div className="form-input2">
                           <p className="label">Họ và tên chủ thẻ</p>
-                          <input type="text" className="input-rightbox-2" />
+                          <input
+                            type="text"
+                            className="input-rightbox-2"
+                            // value={data?.name}
+                            // onChange={handleInputSubmit}
+                          />
                         </div>
 
                         <div className="form-input3">
@@ -204,7 +221,12 @@ const Payment = () => {
 
                         <div className="form-input4">
                           <p className="label">CVV/CVC</p>
-                          <input type="password" className="input-rightbox-4" />
+                          <input
+                            type="password"
+                            className="input-rightbox-4"
+                            // value={data?.cvv}
+                            // onChange={handleInputSubmit}
+                          />
                         </div>
 
                         <div className="box-btn-book">

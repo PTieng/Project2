@@ -16,7 +16,6 @@ import input1 from "../image/icon-input1.png";
 import arrowIcon from "../image/arrowIcon.png";
 import start from "../image/star.png";
 import calendarImg from "../image/calendar.png";
-import { useDispatch } from "react-redux";
 import { HomeInput } from "../redux/slice/homeSlice";
 
 import { useNavigate } from "react-router-dom";
@@ -25,6 +24,7 @@ export const FormDataContext = createContext<HomeInput | null>(null);
 
 const Home = () => {
   const navigate = useNavigate();
+
   const [formData, setFormData] = useState<HomeInput>({
     packages: "",
     name: "",
@@ -37,8 +37,6 @@ const Home = () => {
     endDate: "",
     cvv: "",
   });
-  const dispatch: any = useDispatch();
-  // console.log(dispatch)
 
   const handleChange = (e: any) => {
     setFormData({
