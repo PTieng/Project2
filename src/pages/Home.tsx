@@ -46,19 +46,7 @@ const Home = () => {
   };
 
   const handleSubmit = () => {
-    navigate(
-      `/payment?packages=${encodeURIComponent(
-        formData.packages
-      )}&name=${encodeURIComponent(
-        formData.name
-      )}&quantity=${encodeURIComponent(
-        formData.quantity
-      )}&price=${encodeURIComponent(formData.price)}&email=${encodeURIComponent(
-        formData.email
-      )}&phone=${encodeURIComponent(formData.phone)}&date=${encodeURIComponent(
-        formData.date || ""
-      )}`
-    );
+    navigate("/payment", {state: {formData: formData} });
   };
 
   const handleDateChange = (date: dayjs.Dayjs | null) => {

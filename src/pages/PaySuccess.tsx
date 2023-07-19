@@ -27,7 +27,7 @@ const PaySuccess = () => {
     };
     fetData();
   }, [id]);
-
+  const nameTicket = "ALT20210501";
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -67,7 +67,7 @@ const PaySuccess = () => {
                               key={data?.id}
                             >
                               <img src={imgQR} alt="" className="img-QR" />
-                              <p className="name-QR">ALT20210501</p>
+                              <p className="name-QR">{nameTicket}</p>
                               <p className="des-QR">VÉ CỔNG</p>
                               <p className="bor-QR">---</p>
                               <p className="date-QR">

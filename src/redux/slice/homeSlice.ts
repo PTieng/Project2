@@ -26,7 +26,7 @@ const initialState: HomeState = {
 
 export const createFormData = createAsyncThunk(
   "firestore/add",
-  async (data: HomeInput) => {
+  async (data: Omit<HomeInput, "id">) => {
     const collection = await firestore.collection("bookings").add(data);
     const newdata: HomeInput = { id: collection.id, ...data };
     console.log(newdata);

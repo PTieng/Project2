@@ -1,51 +1,51 @@
 import { Button, DatePicker, Modal } from "antd";
 import dayjs from "dayjs";
-import React, { useContext, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import background from "../image/bg.png";
 import payment1 from "../image/img-payment.png";
 import vector from "../image/Vector.png";
 import calendarImg from "../image/calendar.png";
-// import { FormDataContext } from "./Home";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { createFormData } from "../redux/slice/homeSlice";
 import sad from "../image/sad.png";
+import { CloseCircleOutlined } from "@ant-design/icons";
 
 const Payment = () => {
-  const [error, setError] = useState(false);
   const [date, setDate] = useState("");
-  // const data = useContext(FormDataContext);
+  const [data, setData] = useState({
+    numCard: "",
+    name: "",
+    dateIsage: date,
+    cvv: "",
+  });
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setData({
+      ...data,
+      [e.target.name]: e.target.value,
+    });
+    console.log(data);
+  };
+
   const showModal = () => {
     setIsModalOpen(true);
   };
 
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
+  // const handleCancel = () => {
+  //   setIsModalOpen(false);
+  // };
 
   const location = useLocation();
-  const formData: any = {
-    packages: new URLSearchParams(location.search).get("packages"),
-    name: new URLSearchParams(location.search).get("name"),
-    quantity: new URLSearchParams(location.search).get("quantity"),
-    price: new URLSearchParams(location.search).get("price"),
-    email: new URLSearchParams(location.search).get("email"),
-    phone: new URLSearchParams(location.search).get("phone"),
-    date: new URLSearchParams(location.search).get("date"),
-  };
+  const formData = location.state.formData;
 
   const handleDateChange = (e: any) => {
     setDate(dayjs(e).format("DD/MM/YYYY"));
   };
-
-  // const handleInputSubmit = () => {
-  //   setFormCompleted(!data?.numCard || !data.name || !data.date || !data.cvv);
-  // };
 
   const price = Number(formData.quantity) * Number(formData.price);
   const totalPrice =
@@ -53,10 +53,12 @@ const Payment = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // if (!data?.numCard || !data.name || !data.date || !data.cvv) {
-    //   showModal();
-    //   return
-    // }else {}
+    if (!data?.numCard || !data.name || !data.cvv) {
+      showModal();
+
+      return;
+    } else {
+    }
 
     const formInput = {
       ...formData,
@@ -90,6 +92,7 @@ const Payment = () => {
                           type="text"
                           className="input-leftbox-1"
                           defaultValue={totalPrice}
+                          disabled
                         />
                       </div>
 
@@ -99,6 +102,7 @@ const Payment = () => {
                           type="text"
                           className="input-leftbox-2"
                           defaultValue={formData.quantity ?? ""}
+                          disabled
                         />
                         <p className="ticket">vé</p>
                       </div>
@@ -109,6 +113,7 @@ const Payment = () => {
                           type="text"
                           className="input-leftbox-3"
                           defaultValue={formData.date ?? ""}
+                          disabled
                         />
                       </div>
 
@@ -118,6 +123,7 @@ const Payment = () => {
                           type="text"
                           className="input-leftbox-4"
                           defaultValue={formData.name ?? ""}
+                          disabled
                         />
                       </div>
 
@@ -127,6 +133,7 @@ const Payment = () => {
                           type="text"
                           className="input-leftbox-5"
                           defaultValue={formData.phone ?? ""}
+                          disabled
                         />
                       </div>
 
@@ -136,6 +143,7 @@ const Payment = () => {
                           type="text"
                           className="input-leftbox-6"
                           defaultValue={formData.email ?? ""}
+                          disabled
                         />
                       </div>
                     </div>
@@ -143,15 +151,27 @@ const Payment = () => {
                 </div>
               </div>
               <Modal
+                title={<span className="BgModalErrorPay"></span>}
                 open={isModalOpen}
-                cancelText={false}
-                onCancel={handleCancel}
+                wrapClassName="custom-model"
+                onCancel={() => setIsModalOpen(false)}
                 footer={null}
+                style={{ padding: 0 }}
+                bodyStyle={{ padding: 0 }}
+                closeIcon={
+                  <CloseCircleOutlined
+                    style={{
+                      opacity: "0",
+                    }}
+                  />
+                }
               >
-                <p className="text-modal">
-                  Gửi liên hệ thành công. <br /> Vui lòng kiên nhẫn đợi phản hồi
-                  từ chúng tôi, bạn nhé!
+                <p style={{ padding: "14px 30px 0px", fontSize: "15px" }}>
+                  Hình như đã có lỗi xảy ra khi thanh toán...
+                  <br /> Vui lòng kiểm tra lại thông tin liên hệ, thông tin thẻ
+                  và thử lại.
                 </p>
+                <img src={sad} alt="" className="sadImg" />
               </Modal>
 
               <div className="box-title-left">
@@ -173,8 +193,9 @@ const Payment = () => {
                           <input
                             type="text"
                             className="input-rightbox-1"
-                            // value={data?.numCard}
-                            // onChange={handleInputSubmit}
+                            value={data.numCard}
+                            name="numCard"
+                            onChange={handleChange}
                           />
                         </div>
 
@@ -183,8 +204,9 @@ const Payment = () => {
                           <input
                             type="text"
                             className="input-rightbox-2"
-                            // value={data?.name}
-                            // onChange={handleInputSubmit}
+                            value={data.name}
+                            name="name"
+                            onChange={handleChange}
                           />
                         </div>
 
@@ -194,7 +216,9 @@ const Payment = () => {
                           <input
                             type="text"
                             className="input-rightbox-3"
-                            defaultValue={date}
+                            name="dateIsage"
+                            value={date}
+                            onChange={handleChange}
                           />
                           <div className="btn-date">
                             <Button className="btndate">
@@ -224,8 +248,9 @@ const Payment = () => {
                           <input
                             type="password"
                             className="input-rightbox-4"
-                            // value={data?.cvv}
-                            // onChange={handleInputSubmit}
+                            value={data?.cvv}
+                            onChange={handleChange}
+                            name="cvv"
                           />
                         </div>
 
