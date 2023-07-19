@@ -7,9 +7,11 @@ import email1 from "../image/email-contact.png";
 import phone1 from "../image/phone.png";
 import { useDispatch } from "react-redux";
 import { Contacts, createFormData } from "../redux/slice/contactSlice";
+import { useNavigate } from "react-router-dom";
 
 const Contact = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -36,11 +38,20 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = async () => {
-  showModal()
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    showModal();
 
-   await dispatch(createFormData(data));
+    await dispatch(createFormData(data));
     console.log(data);
+    setData({
+      name: "",
+      email: "",
+      phone: "",
+      address: "",
+      message: "",
+    });
+    navigate("/contact");
   };
 
   return (
@@ -69,82 +80,88 @@ const Contact = () => {
                       </div>
 
                       <div className="form-input-contact">
-                        <div className="box-name">
-                          <input
-                            type="text"
-                            placeholder="Tên"
-                            className="input-contact-name"
-                            value={data.name}
-                            onChange={onChangeContact}
-                            name="name"
-                          />
-                        </div>
-                        <div className="box-email">
-                          <input
-                            type="email"
-                            placeholder="Email"
-                            className="input-contact-email"
-                            value={data.email}
-                            onChange={onChangeContact}
-                            name="email"
-                          />
-                        </div>
+                        <form action="" onSubmit={handleSubmit}>
+                          <div className="box-name">
+                            <input
+                              type="text"
+                              placeholder="Tên"
+                              className="input-contact-name"
+                              value={data.name}
+                              onChange={onChangeContact}
+                              name="name"
+                              required
+                            />
+                          </div>
+                          <div className="box-email">
+                            <input
+                              type="email"
+                              placeholder="Email"
+                              className="input-contact-email"
+                              value={data.email}
+                              onChange={onChangeContact}
+                              name="email"
+                              required
+                            />
+                          </div>
 
-                        <div className="box-phone">
-                          <input
-                            type="text"
-                            placeholder="Số điện thoại"
-                            className="input-contact-phone"
-                            value={data.phone}
-                            onChange={onChangeContact}
-                            name="phone"
-                          />
-                        </div>
+                          <div className="box-phone">
+                            <input
+                              type="text"
+                              placeholder="Số điện thoại"
+                              className="input-contact-phone"
+                              value={data.phone}
+                              onChange={onChangeContact}
+                              name="phone"
+                              required
+                            />
+                          </div>
 
-                        <div className="box-address">
-                          <input
-                            type="text"
-                            placeholder="Địa chỉ"
-                            className="input-contact-address"
-                            value={data.address}
-                            onChange={onChangeContact}
-                            name="address"
-                          />
-                        </div>
+                          <div className="box-address">
+                            <input
+                              type="text"
+                              placeholder="Địa chỉ"
+                              className="input-contact-address"
+                              value={data.address}
+                              onChange={onChangeContact}
+                              name="address"
+                              required
+                            />
+                          </div>
 
-                        <div className="box-mess">
-                          <input
-                            type="text"
-                            placeholder="Lời nhắn"
-                            className="input-contact-mess"
-                            value={data.message}
-                            onChange={onChangeContact}
-                            name="message"
-                          />
-                        </div>
+                          <div className="box-mess">
+                            <input
+                              type="text"
+                              placeholder="Lời nhắn"
+                              className="input-contact-mess"
+                              value={data.message}
+                              onChange={onChangeContact}
+                              name="message"
+                              required
+                            />
+                          </div>
 
-                        <div className="button-contact">
-                          <button
-                            className="btn-contact"
-                            
-                            // onClick={handleClick}
-                            onClick={handleSubmit}
-                            
-                          >
-                            Gửi liên hệ
-                          </button>
-                          <Modal
-                            open={isModalOpen}
-                            cancelText={false}
-                            onCancel={handleCancel}
-                            footer={null}
-                          >
-                            <p className="text-modal">
-                              Gửi liên hệ thành công. <br /> Vui lòng kiên nhẫn
-                              đợi phản hồi từ chúng tôi, bạn nhé!
-                            </p>
-                          </Modal>
-                        </div>
+                          <div className="button-contact">
+                            <button
+                              className="btn-contact"
+
+                              // onClick={handleClick}
+                              // onClick={handleSubmit}
+                            >
+                              Gửi liên hệ
+                            </button>
+                            <Modal
+                              open={isModalOpen}
+                              cancelText={false}
+                              onCancel={handleCancel}
+                              footer={null}
+                            >
+                              <p className="text-modal">
+                                Gửi liên hệ thành công. <br /> Vui lòng kiên
+                                nhẫn đợi phản hồi từ chúng tôi, bạn nhé!
+                              </p>
+                            </Modal>
+                          </div>
+                        </form>
                       </div>
                     </div>
                   </div>
